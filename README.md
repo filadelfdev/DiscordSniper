@@ -1,65 +1,79 @@
 <div align="center">
 
-<strong>High-velocity multi-platform username sniper — up to 5,000 concurrent workers, TLS fingerprint spoofing, proxy rotation and auto-claim.</strong>
+```ansi
+[1m[38;5;201m   ██████╗  ██████╗ ██╗  ██╗██╗   ██╗███╗   ██╗████████╗[0m
+[1m[38;5;165m  ██╔═══██╗██╔════╝ ██║  ██║██║   ██║████╗  ██║╚══██╔══╝[0m
+[1m[38;5;129m  ██║   ██║██║  ███╗███████║██║   ██║██╔██╗ ██║   ██║   [0m
+[1m[38;5;93m  ██║   ██║██║   ██║██╔══██║██║   ██║██║╚██╗██║   ██║   [0m
+[1m[38;5;57m  ╚██████╔╝╚██████╔╝██║  ██║╚██████╔╝██║ ╚████║   ██║   [0m
+[1m[38;5;39m   ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   [0m
+```
 
-<br><br>
+<br>
 
-[🇧🇷 Português](#português) · [🇺🇸 English](#english)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blueviolet?style=for-the-badge&logo=python&logoColor=white&labelColor=0a0a0a)
+![Workers](https://img.shields.io/badge/Workers-5000-9400D3?style=for-the-badge&labelColor=0a0a0a)
+![TLS](https://img.shields.io/badge/TLS-JA3_Spoof-8A2BE2?style=for-the-badge&labelColor=0a0a0a)
+![Platforms](https://img.shields.io/badge/Platforms-6-6A0DAD?style=for-the-badge&labelColor=0a0a0a)
+
+<sub>by <strong>hz x uyp</strong> · discord: <strong>beijariamos</strong></sub>
+
+<br>
+
+[🇧🇷 Português](#-português) · [🇺🇸 English](#-english)
 
 </div>
 
 ---
 
-<h2 id="português">🇧🇷 Português</h2>
+## 🇧🇷 Português
 
-<h3>Plataformas suportadas</h3>
+### 🎯 Plataformas
 
-| Plataforma | Método de verificação | Auto-claim |
+| Plataforma | Verificação | Auto-claim |
 |---|---|---|
-| Discord | API POMELO unique-username | ✅ (token de usuário) |
-| Roblox | Endpoint de validação de auth | ✅ (cookie) |
-| TikTok | Probe de perfil | ❌ |
-| Instagram | Web profile API | ❌ |
-| YouTube | Probe de handle | ❌ |
-| Minecraft | API de perfil Mojang | ✅ (bearer token) |
+| <img src="https://cdn.simpleicons.org/discord/5865F2" width="16"/> Discord | API POMELO unique-username | ✅ token de usuário |
+| <img src="https://cdn.simpleicons.org/roblox/ffffff" width="16"/> Roblox | Endpoint de validação de auth | ✅ cookie |
+| <img src="https://cdn.simpleicons.org/tiktok/ffffff" width="16"/> TikTok | Probe de perfil | ❌ |
+| <img src="https://cdn.simpleicons.org/instagram/E4405F" width="16"/> Instagram | Web profile API | ❌ |
+| <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16"/> YouTube | Probe de handle | ❌ |
+| <img src="https://cdn.simpleicons.org/minecraft/62B47A" width="16"/> Minecraft | API Mojang | ✅ bearer token |
 
-<h3>Funcionalidades</h3>
+### ⚡ Funcionalidades
 
-- Até **5.000 workers simultâneos** — snapshot de proxy lock-free, fila assíncrona de stdout, sem overhead de JSON/base64 no caminho quente
-- **Spoof de fingerprint TLS** via `tls_client` — rotação JA3 entre perfis Chrome, Firefox, Safari, Opera
-- **Pool de proxies inteligente** — rotação por request, cooldown em rate-limit sem matar o proxy, contador de falhas, verificação ao vivo contra cada plataforma antes de snipear
+- **até 5.000 workers simultâneos** — snapshot de proxy lock-free, fila assíncrona de stdout, sem overhead de JSON/base64 no caminho quente
+- **spoof de fingerprint TLS** via `tls_client` — rotação JA3 entre perfis Chrome, Firefox, Safari, Opera
+- **pool de proxies inteligente** — rotação por request, cooldown em rate-limit sem matar o proxy, contador de falhas, verificação ao vivo contra cada plataforma
 - **15 geradores de username** — só letras, leet, palíndromos, vogal-heavy, sufixo numérico, caos total e mais
-- **Auto-claim** dispara no momento que o hit é detectado — Discord PATCH, Roblox CSRF claim, Minecraft PUT
-- **Notificações via Webhook + Bot** — embeds ricos, ping de cargo/usuário, totalmente configurável
-- **Modo Wordlist** — traga sua própria lista e sniped
-- **Controles de teclado** — `N` para pausar/retomar durante a sessão, `Ctrl+C` para parar
-- **Config persistente** — tudo salvo em `oghunt_config.json`, proxies em `oghunt_proxies.json`
+- **auto-claim instantâneo** — Discord PATCH, Roblox CSRF claim, Minecraft PUT, dispara no momento do hit
+- **notificações via webhook + bot** — embeds ricos, ping de cargo/usuário, totalmente configurável
+- **modo wordlist** — traga sua própria lista `.txt` e sniped
+- **controles de teclado** — `N` pausa/retoma, `Ctrl+C` para limpo
+- **config persistente** — `oghunt_config.json` e `oghunt_proxies.json`
 
-<h3>Requisitos</h3>
+### 📦 Requisitos
 
-```
+```bash
 Python 3.10+
 pip install requests colorama urllib3 tls_client
 ```
 
-`tls_client` é opcional mas recomendado — se não instalado, cai no adaptador SSL customizado.
+> `tls_client` é opcional — sem ele usa adaptador SSL customizado de alta concorrência.
 
-<h3>Como usar</h3>
+### 🚀 Como usar
 
 ```bash
 python OGHunt.py
 ```
 
-No dashboard, escolha a plataforma, configure proxies e tokens, depois escolha um dos quatro fluxos:
+| Opção | Descrição |
+|---|---|
+| `[1] Gerar Nomes` | cria batch com padrão e tamanho escolhidos |
+| `[2] Checar Nomes` | sniped batch gerado ou carregado |
+| `[3] Gerar + Checar` | gera e sniped no mesmo fluxo |
+| `[4] Checar Wordlist` | carrega qualquer `.txt` e sniped |
 
-1. **Gerar nomes** — cria um batch com padrão e tamanho escolhidos
-2. **Checar nomes** — sniped um batch gerado ou carregado
-3. **Gerar + checar** — gera e sniped no mesmo fluxo
-4. **Checar wordlist** — carrega qualquer `.txt` e sniped
-
-<h3>Setup de proxies</h3>
-
-Jogue seus proxies no `oghunt_proxies.json` em qualquer um desses formatos:
+### 🌐 Setup de Proxies
 
 ```
 ip:port
@@ -67,74 +81,68 @@ ip:port:user:pass
 http://user:pass@ip:port
 ```
 
-Ou cole direto pelo Gerenciador de Proxies dentro da ferramenta. Sempre verifique contra a plataforma alvo antes da sessão.
-
-<h3>Setup de tokens / cookies</h3>
+### 🔑 Tokens / Cookies
 
 | Plataforma | O que você precisa | Onde configurar |
 |---|---|---|
-| Discord | Token(s) de usuário | Gerenciador de Tokens → Adicionar |
-| Roblox | Cookie `.ROBLOSECURITY` | Config → Roblox Claim |
-| Minecraft | Bearer token | Config → Minecraft Claim |
+| Discord | token(s) de usuário | Gerenciador de Tokens |
+| Roblox | cookie `.ROBLOSECURITY` | Config → Roblox Claim |
+| Minecraft | bearer token | Config → Minecraft Claim |
 
-<h3>Quer um build em outra linguagem?</h3>
+### 💬 Quer um build em outra linguagem?
 
-Se quiser seu próprio sniper em outra linguagem — Go, Rust, C#, Node, qualquer uma — me chama no Discord:
-
-**`ima1`**
+Go, Rust, C#, Node, qualquer uma — me chama no Discord: **`ima1`**
 
 ---
 
-<h2 id="english">🇺🇸 English</h2>
+## 🇺🇸 English
 
-<h3>Supported platforms</h3>
+### 🎯 Platforms
 
 | Platform | Check method | Auto-claim |
 |---|---|---|
-| Discord | POMELO unique-username API | ✅ (user token) |
-| Roblox | Auth validation endpoint | ✅ (cookie) |
-| TikTok | Profile page probe | ❌ |
-| Instagram | Web profile API | ❌ |
-| YouTube | Handle probe | ❌ |
-| Minecraft | Mojang profile API | ✅ (bearer token) |
+| <img src="https://cdn.simpleicons.org/discord/5865F2" width="16"/> Discord | POMELO unique-username API | ✅ user token |
+| <img src="https://cdn.simpleicons.org/roblox/ffffff" width="16"/> Roblox | Auth validation endpoint | ✅ cookie |
+| <img src="https://cdn.simpleicons.org/tiktok/ffffff" width="16"/> TikTok | Profile page probe | ❌ |
+| <img src="https://cdn.simpleicons.org/instagram/E4405F" width="16"/> Instagram | Web profile API | ❌ |
+| <img src="https://cdn.simpleicons.org/youtube/FF0000" width="16"/> YouTube | Handle probe | ❌ |
+| <img src="https://cdn.simpleicons.org/minecraft/62B47A" width="16"/> Minecraft | Mojang profile API | ✅ bearer token |
 
-<h3>Features</h3>
+### ⚡ Features
 
-- Up to **5,000 concurrent workers** — lock-free proxy snapshot, async stdout queue, zero hot-path JSON/base64 overhead
+- **up to 5,000 concurrent workers** — lock-free proxy snapshot, async stdout queue, zero hot-path JSON/base64 overhead
 - **TLS fingerprint spoofing** via `tls_client` — JA3 rotation across Chrome, Firefox, Safari, Opera profiles
-- **Smart proxy pool** — per-request rotation, rate-limit cooldowns without killing the proxy, fail counter, live verification against each platform before sniping
+- **smart proxy pool** — per-request rotation, rate-limit cooldowns without killing the proxy, fail counter, live verification against each platform
 - **15 username generators** — letters only, leet, palindromes, vowel-heavy, digit suffix, chaos mix and more
-- **Auto-claim** fires the moment a hit lands — Discord PATCH, Roblox CSRF claim, Minecraft PUT
-- **Webhook + Bot notifications** — rich embeds, role/user pings, fully configurable
-- **Wordlist mode** — bring your own list and snipe it
-- **Keyboard controls** — `N` to pause/resume mid-session, `Ctrl+C` to stop
-- **Persistent config** — all settings saved to `oghunt_config.json`, proxies to `oghunt_proxies.json`
+- **instant auto-claim** — Discord PATCH, Roblox CSRF claim, Minecraft PUT, fires the moment a hit lands
+- **webhook + bot notifications** — rich embeds, role/user pings, fully configurable
+- **wordlist mode** — bring your own `.txt` list and snipe it
+- **keyboard controls** — `N` pause/resume, `Ctrl+C` clean stop
+- **persistent config** — `oghunt_config.json` and `oghunt_proxies.json`
 
-<h3>Requirements</h3>
+### 📦 Requirements
 
-```
+```bash
 Python 3.10+
 pip install requests colorama urllib3 tls_client
 ```
 
-`tls_client` is optional but recommended — falls back to a custom SSL cipher adapter if not installed.
+> `tls_client` is optional — falls back to a high-concurrency custom SSL cipher adapter.
 
-<h3>Usage</h3>
+### 🚀 Usage
 
 ```bash
 python OGHunt.py
 ```
 
-From the dashboard, pick your platform, configure proxies and tokens, then choose one of the four workflows:
+| Option | Description |
+|---|---|
+| `[1] Generate Names` | create a batch with chosen pattern and length |
+| `[2] Check Names` | snipe a previously generated or loaded batch |
+| `[3] Gen + Check` | generate then immediately snipe |
+| `[4] Wordlist Check` | load any `.txt` wordlist and snipe it |
 
-1. **Generate Names** — create a username batch with a chosen pattern and length
-2. **Check Names** — snipe a previously generated or loaded batch
-3. **Gen + Check** — generate then immediately snipe in one flow
-4. **Wordlist Check** — load any `.txt` wordlist and snipe it
-
-<h3>Proxy setup</h3>
-
-Drop your proxies into `oghunt_proxies.json` in any of these formats:
+### 🌐 Proxy Setup
 
 ```
 ip:port
@@ -142,24 +150,20 @@ ip:port:user:pass
 http://user:pass@ip:port
 ```
 
-Or paste them directly from the Proxy Manager inside the tool. Always verify against the target platform before a session.
-
-<h3>Token / cookie setup</h3>
+### 🔑 Token / Cookie Setup
 
 | Platform | What you need | Where to set it |
 |---|---|---|
-| Discord | User token(s) | Token Manager → Add |
+| Discord | user token(s) | Token Manager |
 | Roblox | `.ROBLOSECURITY` cookie | Config → Roblox Claim |
-| Minecraft | Bearer token | Config → Minecraft Claim |
+| Minecraft | bearer token | Config → Minecraft Claim |
 
-<h3>Want a build in another language?</h3>
+### 💬 Want a build in another language?
 
-If you want your own sniper built in a different language — Go, Rust, C#, Node, whatever — hit me up on Discord:
-
-**`ima1`**
+Go, Rust, C#, Node, whatever — hit me up on Discord: **`ima1`**
 
 ---
 
 <div align="center">
-<sub>by hz x uyp · discord: beijariamos</sub>
+<sub>by <strong>hz x uyp</strong> · discord: <strong>beijariamos</strong></sub>
 </div>
